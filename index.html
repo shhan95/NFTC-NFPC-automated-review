@@ -1,72 +1,62 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NFPC/NFTC 자동검토 대시보드</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFPC/NFTC 자동 모니터링 대시보드</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <header class="wrap header">
   <header class="header wrap">
     <div>
-      <h1>NFPC / NFTC 자동검토 대시보드</h1>
-      <p class="sub">법제처(행정규칙 OPEN API) 기반 · 전수 목록 클릭 탐색 · 날짜별 자동검토 로그</p>
-    </div>
-    <div class="meta">
-      <span id="lastRun">마지막 자동검토: -</span>
       <h1>NFPC/NFTC 자동 모니터링 대시보드</h1>
-      <p class="muted">국가법령정보센터 OPEN API 기반 · 전체 조항 일일 점검(오전 10시)</p>
+      <p class="muted">국가법령정보센터 OPEN API 기반 · 전체 기준 일일 점검(오전 10시)</p>
     </div>
     <div id="lastRun" class="lastRun">마지막 점검: -</div>
   </header>
+
+  <section class="wrap stats" id="statsCards">
+    <article class="statCard">
+      <div class="label">NFPC 항목 수</div>
+      <div class="value" id="nfpcCount">-</div>
+    </article>
+    <article class="statCard">
+      <div class="label">NFTC 항목 수</div>
+      <div class="value" id="nftcCount">-</div>
+    </article>
+    <article class="statCard">
+      <div class="label">최근 변경 수</div>
+      <div class="value" id="changeCount">-</div>
+    </article>
+    <article class="statCard">
+      <div class="label">최근 결과</div>
+      <div class="value smallV" id="latestResult">-</div>
+    </article>
+  </section>
 
   <main class="wrap grid">
     <section class="panel">
       <div class="panelHead">
         <h2>기준 목록</h2>
-        <input id="searchStd" class="input" placeholder="검색: NFPC 103, 스프링클러, NFTC…" />
         <div class="tabs">
           <button class="tab active" data-tab="nfpc">NFPC</button>
           <button class="tab" data-tab="nftc">NFTC</button>
         </div>
       </div>
-      <div class="tabs">
-        <button class="tab active" data-tab="nfpc">NFPC</button>
-        <button class="tab" data-tab="nftc">NFTC</button>
       <div class="controls">
         <input id="searchInput" class="input" type="text" placeholder="코드/제목 검색" />
         <select id="statusFilter" class="select">
-          <option value="all">전체</option>
+          <option value="all">전체 상태</option>
           <option value="FOUND">FOUND</option>
           <option value="NOT_FOUND">NOT_FOUND</option>
           <option value="ERROR">ERROR</option>
         </select>
       </div>
       <div id="stdList" class="list"></div>
-      <div class="small muted" style="margin-top:8px">
-        * 기준 목록은 standards_nfpc.json / standards_nftc.json에서 로드합니다.
-      </div>
     </section>
 
     <section class="panel">
       <div class="panelHead">
-        <h2>검토 로그</h2>
-        <div class="row">
-          <select id="resultFilter" class="select">
-            <option value="all">전체</option>
-            <option value="nochange">변경 없음</option>
-            <option value="change">변경 있음</option>
-          </select>
-          <button id="downloadJson" class="btn ghost">data.json 다운로드</button>
-        </div>
-      </div>
-      <div id="logList" class="log"></div>
-      <div class="small muted" style="margin-top:8px">
-        * GitHub Actions가 data.json을 매일 자동 갱신합니다.
         <h2>변경 이력</h2>
         <button id="downloadBtn" class="btn ghost">data.json 다운로드</button>
       </div>
@@ -75,18 +65,11 @@
     </section>
   </main>
 
-  <dialog id="dlg" class="dlg">
-    <div class="dlgHead">
-      <div>
-        <div id="dlgTitle" class="dlgTitle"></div>
-        <div id="dlgSub" class="dlgSub"></div>
-      </div>
   <dialog id="detailDialog" class="dialog">
     <div class="dialogHead">
       <h3 id="dlgTitle">상세</h3>
       <button id="dlgClose" class="btn">닫기</button>
     </div>
-    <div id="dlgBody" class="dlgBody"></div>
     <div id="dlgBody" class="dialogBody"></div>
   </dialog>
 
