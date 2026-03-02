@@ -305,5 +305,39 @@ def main() -> None:
         f"NFTC {nftc_stats['changed']}건 변경(전체 {nftc_stats['total']} / 성공 {nftc_stats['found']} / 미검출 {nftc_stats['notFound']} / 오류 {nftc_stats['error']})"
     )
 
+    record = {
+        "date": TODAY,
+        "checkedAt": NOW().isoformat(timespec="seconds"),
+        "scope": "NFPC/NFTC",
+        "result": result,
+        "summary": summary,
+        "stats": {"nfpc": nfpc_stats, "nftc": nftc_stats},
+        "changes": all_changes,
+    }
+
+    records = data.get("records", [])
+    if records and records[0].get("date") == TODAY:
+        records[0] = record
+    else:
+        records.insert(0, record)
+
+    data["lastRun"] = NOW().isoformat(timespec="seconds")
+    data["records"] = records[:365]
+
+    snapshot["nfpc"] = nfpc_latest
+    snapshot["nftc"] = nftc_latest
+
+    # 사라졌던 핵심 코드: 파일을 실제로 생성하고 저장하는 명령어입니다!
+    save_json("data.json", data)
+    save_json("snapshot.json", snapshot)
+
+    short = f"[{TODAY}] {result} - NFPC {nfpc_stats['changed']}건, NFTC {nftc_stats['changed']}건"
+    print(short)
+    print(summary)
+
+    if all_changes:
+        post_webhook(f"{short}\n{summary}")
+
+
 if __name__ == "__main__":
     main()
