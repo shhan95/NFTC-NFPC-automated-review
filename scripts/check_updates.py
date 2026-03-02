@@ -128,7 +128,7 @@ def pick_best_item(items: List[Dict[str, Any]], std: Dict[str, Any]) -> Optional
             s += 10
         elif std_title and std_title in title:
             s += 6
-        if std_org and std_org and std_org in org:
+        if std_org and std_org in org:
             s += 3
         if rev in ("개정", "제정", "전부개정", "일부개정"):
             s += 1
@@ -302,41 +302,4 @@ def main() -> None:
 
     summary = (
         f"NFPC {nfpc_stats['changed']}건 변경(전체 {nfpc_stats['total']} / 성공 {nfpc_stats['found']} / 미검출 {nfpc_stats['notFound']} / 오류 {nfpc_stats['error']}) | "
-        f"NFTC {nftc_stats['changed']}건 변경(전체 {nftc_stats['total']} / 성공 {nftc_stats['found']} / 미검출 {nftc_stats['notFound']} / 오류 {nftc_stats['error']})"
-    )
-
-    record = {
-        "date": TODAY,
-        "checkedAt": NOW().isoformat(timespec="seconds"),
-        "scope": "NFPC/NFTC",
-        "result": result,
-        "summary": summary,
-        "stats": {"nfpc": nfpc_stats, "nftc": nftc_stats},
-        "changes": all_changes,
-    }
-
-    records = data.get("records", [])
-    if records and records[0].get("date") == TODAY:
-        records[0] = record
-    else:
-        records.insert(0, record)
-
-    data["lastRun"] = NOW().isoformat(timespec="seconds")
-    data["records"] = records[:365]
-
-    snapshot["nfpc"] = nfpc_latest
-    snapshot["nftc"] = nftc_latest
-
-    save_json("data.json", data)
-    save_json("snapshot.json", snapshot)
-
-    short = f"[{TODAY}] {result} - NFPC {nfpc_stats['changed']}건, NFTC {nftc_stats['changed']}건"
-    print(short)
-    print(summary)
-
-    if all_changes:
-        post_webhook(f"{short}\n{summary}")
-
-
-if __name__ == "__main__":
-    main()
+        f"NFT
