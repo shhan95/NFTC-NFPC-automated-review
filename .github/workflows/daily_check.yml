@@ -19,7 +19,7 @@ jobs:
       LAWGO_OC: ${{ secrets.LAWGO_OC }}
       ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
       TZ: Asia/Seoul
-      LAWGO_REQUEST_GAP: "1.5"  # <--- 이 줄을 추가해 주세요! (1.5초 간격으로 요청)
+      LAWGO_REQUEST_GAP: "2.5"  # <--- 이 줄을 추가해 주세요! (2.5초 간격으로 요청)
       
     steps:
       - uses: actions/checkout@v4
