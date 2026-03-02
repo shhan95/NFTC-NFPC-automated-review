@@ -1,5 +1,4 @@
 # NFTC-NFPC-automated-review
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/README.md b/README.md
 index 762f8be6d1fbc777cdedce478051904f27ce6ad4..4666d1cf686bb22418b039c87a874ac565dfa43b 100644
 --- a/README.md
@@ -104,6 +103,3 @@ index 762f8be6d1fbc777cdedce478051904f27ce6ad4..4666d1cf686bb22418b039c87a874ac5
 +## 참고
 +- OPEN API 응답 포맷 차이를 고려해 스키마 유연 파싱을 적용했습니다.
 +- 특정 항목이 검색되지 않을 경우 `NOT_FOUND`로 기록되며, 다음 실행 시 재평가됩니다.
- 
-EOF
-)
