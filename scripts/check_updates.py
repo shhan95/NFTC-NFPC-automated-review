@@ -302,4 +302,5 @@ def main() -> None:
 
     summary = (
         f"NFPC {nfpc_stats['changed']}건 변경(전체 {nfpc_stats['total']} / 성공 {nfpc_stats['found']} / 미검출 {nfpc_stats['notFound']} / 오류 {nfpc_stats['error']}) | "
-        f"NFT
+        f"NFTC {nftc_stats['changed']}건 변경(전체 {nftc_stats['total']} / 성공 {nftc_stats['found']} / 미검출 {nftc_stats['notFound']} / 오류 {nftc_stats['error']})"
+    )
