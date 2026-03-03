@@ -133,19 +133,29 @@ function openDetail(code) {
   const meta = loadCurrentSnapshot()[code] || {};
 
   $("dlgTitle").textContent = `${code} · ${s?.title || ""}`;
+  
+  // 💡 새롭게 추가된 대형 원문 버튼 디자인!
+  let linkButton = meta.htmlUrl 
+    ? `<div style="margin-top: 16px; text-align: center;">
+         <a href="${esc(meta.htmlUrl)}" target="_blank" rel="noreferrer" style="display: block; padding: 14px; background: var(--accent); color: #0b1220; font-size: 15px; font-weight: 800; text-decoration: none; border-radius: 10px; transition: 0.2s;">
+           📖 공식 법령 전문 보러가기 (새창)
+         </a>
+       </div>`
+    : `<div style="margin-top: 16px; text-align: center; color: var(--warn); font-size: 14px;">원문 링크가 아직 제공되지 않습니다.</div>`;
+
   $("dlgBody").innerHTML = `
     <table class="table">
       <tbody>
-        <tr><th>상태</th><td>${esc(meta.status || "-")}</td></tr>
+        <tr><th style="width: 30%;">상태</th><td>${statusBadge(meta.status)}</td></tr>
         <tr><th>제·개정구분</th><td>${esc(meta.revisionType || "-")}</td></tr>
         <tr><th>발령번호</th><td>${esc(meta.noticeNo || "-")}</td></tr>
         <tr><th>발령일</th><td>${esc(meta.announceDate || "-")}</td></tr>
         <tr><th>시행일</th><td>${esc(meta.effectiveDate || "-")}</td></tr>
-        <tr><th>원문 링크</th><td>${meta.htmlUrl ? `<a href="${esc(meta.htmlUrl)}" target="_blank" rel="noreferrer">바로가기</a>` : "-"}</td></tr>
-        <tr><th>오류</th><td>${esc(meta.error || "-")}</td></tr>
         <tr><th>최종 점검</th><td>${esc(meta.checkedAt || "-")}</td></tr>
+        ${meta.error ? `<tr><th>오류</th><td style="color: var(--err);">${esc(meta.error)}</td></tr>` : ""}
       </tbody>
     </table>
+    ${linkButton}
   `;
 
   $("detailDialog").showModal();
