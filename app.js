@@ -89,16 +89,39 @@ function renderLogs() {
   }
 
   const html = records
-    .map((r) => `
-      <div class="logItem">
-        <div class="logTop">
-          <div><b>${esc(r.date)}</b></div>
-          <div>${r.result === "변경 있음" ? '<span class="badge warn">변경 있음</span>' : '<span class="badge ok">변경 없음</span>'}</div>
+    .map((r) => {
+      // 💡 새로 추가된 부분: 변경된 항목들을 순회하며 개정이유(reason)를 그려줍니다.
+      let changesHtml = "";
+      if (r.changes && r.changes.length > 0) {
+        changesHtml = r.changes.map(c => {
+          let box = `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line-soft);">`;
+          box += `<div class="small"><b>${esc(c.code)}</b> : ${esc(c.title)} <span class="muted">(${esc(c.revisionType || "변경")})</span></div>`;
+          
+          // 개정이유 데이터가 있다면 아까 만든 CSS(reasonBox)를 입혀서 출력!
+          if (c.reason) {
+            box += `<div class="reasonBox">
+                      <div class="reasonLabel">개정이유 브리핑</div>
+                      ${esc(c.reason)}
+                    </div>`;
+          }
+          box += `</div>`;
+          return box;
+        }).join("");
+      } else {
+        changesHtml = `<div class="small" style="margin-top: 6px;">변경 항목: -</div>`;
+      }
+
+      return `
+        <div class="logItem">
+          <div class="logTop">
+            <div><b>${esc(r.date)}</b></div>
+            <div>${r.result === "변경 있음" ? '<span class="badge warn">변경 있음</span>' : '<span class="badge ok">변경 없음</span>'}</div>
+          </div>
+          <div class="small">${esc(r.summary || "")}</div>
+          ${changesHtml}
         </div>
-        <div class="small">${esc(r.summary || "")}</div>
-        <div class="small">변경 항목: ${(r.changes || []).slice(0, 10).map((c) => esc(c.code)).join(", ") || "-"}</div>
-      </div>
-    `)
+      `;
+    })
     .join("");
 
   $("logList").innerHTML = html || `<div class="small">로그가 없습니다.</div>`;
