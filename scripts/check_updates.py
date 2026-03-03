@@ -18,10 +18,13 @@ if not LAWGO_OC:
 
 ALERT_WEBHOOK_URL = os.getenv("ALERT_WEBHOOK_URL", "").strip()
 
+# 검색 API와 상세조회 API 주소 분리
 LAW_SEARCH_URL = "https://www.law.go.kr/DRF/lawSearch.do"
+LAW_SERVICE_URL = "https://www.law.go.kr/DRF/lawService.do"
+
 TIMEOUT = int(os.getenv("LAWGO_TIMEOUT", "12"))
 MAX_RETRIES = int(os.getenv("LAWGO_MAX_RETRIES", "3"))
-REQUEST_GAP = float(os.getenv("LAWGO_REQUEST_GAP", "0.2"))
+REQUEST_GAP = float(os.getenv("LAWGO_REQUEST_GAP", "1.5"))
 
 
 def load_json(path: str, default: Any) -> Any:
@@ -93,7 +96,6 @@ def to_dict_list(value: Any) -> List[Dict[str, Any]]:
 
 def extract_items(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     candidates: List[Dict[str, Any]] = []
-
     top = payload.get("AdmRulSearch") or payload.get("admrulSearch")
     if isinstance(top, dict):
         candidates.extend(to_dict_list(top.get("admrul")))
@@ -139,29 +141,14 @@ def pick_best_item(items: List[Dict[str, Any]], std: Dict[str, Any]) -> Optional
 
 def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: str = "") -> Dict[str, Any]:
     now = NOW().isoformat(timespec="seconds")
-
-    if error:
+    if error or not item:
         return {
             "code": std.get("code"),
             "title": std.get("title"),
-            "status": "ERROR",
+            "status": "ERROR" if error else "NOT_FOUND",
             "checkedAt": now,
             "error": error,
-            "noticeNo": "",
-            "announceDate": "",
-            "effectiveDate": "",
-            "revisionType": "",
-            "htmlUrl": "",
-            "sourceHash": "",
-        }
-
-    if not item:
-        return {
-            "code": std.get("code"),
-            "title": std.get("title"),
-            "status": "NOT_FOUND",
-            "checkedAt": now,
-            "error": "",
+            "seq": "",
             "noticeNo": "",
             "announceDate": "",
             "effectiveDate": "",
@@ -172,6 +159,9 @@ def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: s
 
     source_hash = sha256_text(json.dumps(item, ensure_ascii=False, sort_keys=True))
     html_url = item.get("법령상세링크") or item.get("상세링크") or ""
+    
+    # 일련번호(seq) 추출 추가
+    seq = str(item.get("행정규칙일련번호") or item.get("법령일련번호") or "")
 
     return {
         "code": std.get("code"),
@@ -179,6 +169,7 @@ def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: s
         "status": "FOUND",
         "checkedAt": now,
         "error": "",
+        "seq": seq,
         "noticeNo": str(item.get("공포번호") or item.get("발령번호") or ""),
         "announceDate": normalize_date(item.get("공포일자") or item.get("발령일자")),
         "effectiveDate": normalize_date(item.get("시행일자")),
@@ -200,7 +191,6 @@ def fetch_standard(std: Dict[str, Any]) -> Dict[str, Any]:
         "query": query,
         "display": "30",
     }
-
     payload = http_get_json(LAW_SEARCH_URL, params)
     if payload is None:
         return build_snapshot(std, None, error="api request failed")
@@ -210,18 +200,40 @@ def fetch_standard(std: Dict[str, Any]) -> Dict[str, Any]:
     return build_snapshot(std, best)
 
 
-def diff_changed(prev: Optional[Dict[str, Any]], cur: Dict[str, Any]) -> Tuple[bool, List[str]]:
-    keys = [
-        "status",
-        "noticeNo",
-        "announceDate",
-        "effectiveDate",
-        "revisionType",
-        "htmlUrl",
-        "sourceHash",
-        "error",
-    ]
+# 🌟 새로 추가된 핵심 기능: 변경된 법령의 개정이유를 상세조회 API에서 가져옵니다!
+def fetch_revision_reason(seq: str) -> str:
+    if not seq:
+        return ""
+    
+    params = {
+        "OC": LAWGO_OC,
+        "target": "admrul",
+        "type": "JSON",
+        "ID": seq
+    }
+    
+    payload = http_get_json(LAW_SERVICE_URL, params)
+    if not payload:
+        return "상세 내용을 불러오지 못했습니다."
+    
+    # 상세 데이터에서 '제개정이유' 파싱
+    try:
+        # 법제처 API 구조에 따라 'AdmRul' -> '제개정이유' 텍스트를 추출
+        adm_rul = payload.get("AdmRul", {})
+        reason = adm_rul.get("제개정이유", "")
+        # 만약 내용이 없거나 태그 찌꺼기가 섞여 있다면 기본 텍스트 반환
+        if reason:
+            # 간단한 HTML 태그 제거나 공백 정리 (필요시)
+            reason = reason.replace("<![CDATA[", "").replace("]]>", "").strip()
+            return reason
+    except Exception:
+        pass
+        
+    return "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요."
 
+
+def diff_changed(prev: Optional[Dict[str, Any]], cur: Dict[str, Any]) -> Tuple[bool, List[str]]:
+    keys = ["status", "noticeNo", "announceDate", "effectiveDate", "revisionType", "htmlUrl", "sourceHash", "error"]
     if not prev:
         return True, ["new"]
 
@@ -233,7 +245,6 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
     standards = load_json(standards_file, {"items": []}).get("items", [])
     latest: Dict[str, Any] = {}
     changes: List[Dict[str, Any]] = []
-
     stats = {"total": 0, "found": 0, "notFound": 0, "error": 0, "changed": 0}
 
     for std in standards:
@@ -255,6 +266,13 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
         changed, changed_fields = diff_changed(prev, cur)
         if changed:
             stats["changed"] += 1
+            
+            # 🌟 변경이 감지되었을 때만 상세조회를 돌려서 개정이유를 가져옵니다.
+            revision_reason = ""
+            if cur.get("seq") and cur.get("status") == "FOUND":
+                revision_reason = fetch_revision_reason(cur.get("seq"))
+                time.sleep(REQUEST_GAP)  # 상세조회 후에도 서버 과부하 방지 휴식
+            
             changes.append(
                 {
                     "scope": scope,
@@ -265,6 +283,8 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
                     "announceDate": cur.get("announceDate", ""),
                     "effectiveDate": cur.get("effectiveDate", ""),
                     "changedFields": changed_fields,
+                    "reason": revision_reason,  # 데이터에 이유 추가!
+                    "url": cur.get("htmlUrl", "")
                 }
             )
 
@@ -301,9 +321,17 @@ def main() -> None:
     result = "변경 있음" if all_changes else "변경 없음"
 
     summary = (
-        f"NFPC {nfpc_stats['changed']}건 변경(전체 {nfpc_stats['total']} / 성공 {nfpc_stats['found']} / 미검출 {nfpc_stats['notFound']} / 오류 {nfpc_stats['error']}) | "
-        f"NFTC {nftc_stats['changed']}건 변경(전체 {nftc_stats['total']} / 성공 {nftc_stats['found']} / 미검출 {nftc_stats['notFound']} / 오류 {nftc_stats['error']})"
+        f"NFPC {nfpc_stats['changed']}건 변경 | "
+        f"NFTC {nftc_stats['changed']}건 변경"
     )
+
+    # 알림 발송용 상세 텍스트 조립
+    detail_msg = ""
+    for c in all_changes:
+        detail_msg += f"\n[{c['scope']}] {c['title']} ({c['revisionType']})\n"
+        if c.get("reason"):
+            detail_msg += f"💡 개정이유: {c['reason'][:200]}...\n" # 너무 길면 잘라서 보여줌
+        detail_msg += f"🔗 링크: {c['url']}\n"
 
     record = {
         "date": TODAY,
@@ -327,16 +355,16 @@ def main() -> None:
     snapshot["nfpc"] = nfpc_latest
     snapshot["nftc"] = nftc_latest
 
-    # 사라졌던 핵심 코드: 파일을 실제로 생성하고 저장하는 명령어입니다!
     save_json("data.json", data)
     save_json("snapshot.json", snapshot)
 
-    short = f"[{TODAY}] {result} - NFPC {nfpc_stats['changed']}건, NFTC {nftc_stats['changed']}건"
+    short = f"[{TODAY}] {result} - {summary}"
     print(short)
-    print(summary)
+    if detail_msg:
+        print(detail_msg)
 
     if all_changes:
-        post_webhook(f"{short}\n{summary}")
+        post_webhook(f"{short}\n{detail_msg}")
 
 
 if __name__ == "__main__":
