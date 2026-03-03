@@ -143,3 +143,34 @@ h1 { margin: 0; font-size: 26px; letter-spacing: .2px; }
 .table th, .table td { border: 1px solid var(--line-soft); font-size: 12px; padding: 8px; text-align: left; vertical-align: top; }
 .table th { background: rgba(255, 255, 255, 0.04); }
 a { color: #9ec4ff; }
+
+/* =========================================
+   💡 개정이유 (Revision Reason) 전문 브리핑 박스 디자인 
+   ========================================= */
+.reasonBox {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: rgba(126, 167, 255, 0.08); /* 은은한 파란색 배경 */
+  border-left: 4px solid var(--accent); /* 왼쪽에 굵은 포인트 라인 */
+  border-radius: 4px 8px 8px 4px;
+  font-size: 13px;
+  color: #c7d6f4;
+  line-height: 1.6;
+  word-break: keep-all; /* 한글 단어 끊김 방지 */
+}
+
+.reasonBox .reasonLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.reasonBox .reasonLabel::before {
+  content: "💡"; /* 아이콘 추가 */
+  font-size: 14px;
+}
