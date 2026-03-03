@@ -363,9 +363,8 @@ def main() -> None:
     if detail_msg:
         print(detail_msg)
 
-    if all_changes:
-        post_webhook(f"{short}\n{detail_msg}")
-
+    # 조건문(if)을 없애서 매일 무조건 알림을 쏘게 만듭니다!
+    post_webhook(f"{short}\n{detail_msg}")
 
 if __name__ == "__main__":
     main()
