@@ -90,14 +90,12 @@ function renderLogs() {
 
   const html = records
     .map((r) => {
-      // 💡 새로 추가된 부분: 변경된 항목들을 순회하며 개정이유(reason)를 그려줍니다.
       let changesHtml = "";
       if (r.changes && r.changes.length > 0) {
         changesHtml = r.changes.map(c => {
           let box = `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line-soft);">`;
           box += `<div class="small"><b>${esc(c.code)}</b> : ${esc(c.title)} <span class="muted">(${esc(c.revisionType || "변경")})</span></div>`;
           
-          // 개정이유 데이터가 있다면 아까 만든 CSS(reasonBox)를 입혀서 출력!
           if (c.reason) {
             box += `<div class="reasonBox">
                       <div class="reasonLabel">개정이유 브리핑</div>
@@ -134,14 +132,19 @@ function openDetail(code) {
 
   $("dlgTitle").textContent = `${code} · ${s?.title || ""}`;
   
-  // 💡 새롭게 추가된 대형 원문 버튼 디자인!
-  let linkButton = meta.htmlUrl 
+  // 💡 핵심 추가: API가 링크를 안 주면, 우리가 저장해둔 고유 일련번호(seq)로 직접 링크를 강제 조립합니다!
+  let finalUrl = meta.htmlUrl;
+  if (!finalUrl && meta.seq) {
+    finalUrl = `https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=${meta.seq}`;
+  }
+
+  let linkButton = finalUrl 
     ? `<div style="margin-top: 16px; text-align: center;">
-         <a href="${esc(meta.htmlUrl)}" target="_blank" rel="noreferrer" style="display: block; padding: 14px; background: var(--accent); color: #0b1220; font-size: 15px; font-weight: 800; text-decoration: none; border-radius: 10px; transition: 0.2s;">
+         <a href="${esc(finalUrl)}" target="_blank" rel="noreferrer" style="display: block; padding: 14px; background: var(--accent); color: #0b1220; font-size: 15px; font-weight: 800; text-decoration: none; border-radius: 10px; transition: 0.2s;">
            📖 공식 법령 전문 보러가기 (새창)
          </a>
        </div>`
-    : `<div style="margin-top: 16px; text-align: center; color: var(--warn); font-size: 14px;">원문 링크가 아직 제공되지 않습니다.</div>`;
+    : `<div style="margin-top: 16px; text-align: center; color: var(--warn); font-size: 14px;">원문 링크를 아직 불러올 수 없습니다.</div>`;
 
   $("dlgBody").innerHTML = `
     <table class="table">
