@@ -296,18 +296,31 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
 
 def post_webhook(message: str) -> None:
     if not ALERT_WEBHOOK_URL:
+        print("⚠️ 알림 실패: 깃허브 Secret에 'ALERT_WEBHOOK_URL'이 없습니다!")
         return
-    payload = json.dumps({"text": message}, ensure_ascii=False).encode("utf-8")
+        
+    # 디스코드 전용 양식('content')으로 데이터 포장
+    payload = json.dumps({"content": message}, ensure_ascii=False).encode("utf-8")
+    
+    # 만약 주소 끝에 /slack이 붙어있다면 제거 (순정 디스코드 주소 사용)
+    target_url = ALERT_WEBHOOK_URL
+    if target_url.endswith("/slack"):
+        target_url = target_url[:-6]
+
     req = urllib.request.Request(
-        ALERT_WEBHOOK_URL,
+        target_url,
         data=payload,
-        headers={"Content-Type": "application/json; charset=utf-8"},
+        headers={
+            "Content-Type": "application/json; charset=utf-8",
+            "User-Agent": "Mozilla/5.0"
+        },
         method="POST",
     )
     try:
         urllib.request.urlopen(req, timeout=8).read()
-    except Exception:
-        pass
+        print("🔔 디스코드 알림 전송 성공!")
+    except Exception as e:
+        print(f"❌ 디스코드 알림 전송 실패: {e}")
 
 
 def main() -> None:
