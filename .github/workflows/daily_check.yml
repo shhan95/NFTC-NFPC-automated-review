@@ -2,7 +2,8 @@ name: NFPC NFTC Daily Check
 
 on:
   schedule:
-    - cron: "0 1 * * *" # KST 10:00
+    # 🕒 KST 오전 10시 17분 (UTC 1:17) - 정각 트래픽 회피!
+    - cron: "17 1 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,7 +20,7 @@ jobs:
       LAWGO_OC: ${{ secrets.LAWGO_OC }}
       ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
       TZ: Asia/Seoul
-      LAWGO_REQUEST_GAP: "2.5"  # <--- 이 줄을 추가해 주세요! (2.5초 간격으로 요청)
+      LAWGO_REQUEST_GAP: "2.5"  # <--- 이 훌륭한 안전장치는 무조건 살려둡니다!
       
     steps:
       - uses: actions/checkout@v4
