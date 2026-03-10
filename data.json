@@ -1,6 +1,50 @@
 {
-  "lastRun": "2026-03-09T14:43:14+09:00",
+  "lastRun": "2026-03-10T14:19:17+09:00",
   "records": [
+    {
+      "date": "2026-03-10",
+      "checkedAt": "2026-03-10T14:19:17+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 1,
+          "error": 0,
+          "changed": 1
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFTC",
+          "code": "NFTC_301",
+          "title": "피난기구의 화재안전기술기준",
+          "status": "NOT_FOUND",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-03-09",
       "checkedAt": "2026-03-09T14:43:14+09:00",
