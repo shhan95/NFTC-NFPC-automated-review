@@ -1,26 +1,26 @@
 {
-  "lastRun": "2026-03-14T14:36:29+09:00",
+  "lastRun": "2026-03-14T15:18:01+09:00",
   "records": [
     {
       "date": "2026-03-14",
-      "checkedAt": "2026-03-14T14:36:29+09:00",
+      "checkedAt": "2026-03-14T15:18:01+09:00",
       "scope": "NFPC/NFTC",
       "result": "변경 있음",
-      "summary": "NFPC 4건 변경 | NFTC 7건 변경",
+      "summary": "NFPC 11건 변경 | NFTC 9건 변경",
       "stats": {
         "nfpc": {
-          "total": 41,
-          "found": 37,
-          "notFound": 0,
-          "error": 4,
-          "changed": 4
-        },
-        "nftc": {
           "total": 41,
           "found": 34,
           "notFound": 0,
           "error": 7,
-          "changed": 7
+          "changed": 11
+        },
+        "nftc": {
+          "total": 41,
+          "found": 39,
+          "notFound": 0,
+          "error": 2,
+          "changed": 9
         }
       },
       "changes": [
@@ -28,6 +28,46 @@
           "scope": "NFPC",
           "code": "NFPC_103",
           "title": "스프링클러설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2025.12.24",
+          "effectiveDate": "2026.03.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_104",
+          "title": "물분무소화설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_107",
+          "title": "할론소화설비의 화재안전성능기준",
           "status": "ERROR",
           "revisionType": "",
           "announceDate": "",
@@ -48,10 +88,10 @@
           "scope": "NFPC",
           "code": "NFPC_109",
           "title": "옥외소화전설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2025.12.31",
+          "effectiveDate": "2026.03.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -61,13 +101,53 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFPC",
           "code": "NFPC_205",
           "title": "누전경보기의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "전부개정",
+          "announceDate": "2022.11.25",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_206",
+          "title": "가스누설경보기의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "전부개정",
+          "announceDate": "2022.11.25",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_401",
+          "title": "상수도소화용수설비의 화재안전성능기준",
           "status": "ERROR",
           "revisionType": "",
           "announceDate": "",
@@ -86,8 +166,88 @@
         },
         {
           "scope": "NFPC",
-          "code": "NFPC_206",
-          "title": "가스누설경보기의 화재안전성능기준",
+          "code": "NFPC_501",
+          "title": "제연설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_503",
+          "title": "연결살수설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_504",
+          "title": "비상콘센트설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_605",
+          "title": "지하구의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_101",
+          "title": "소화기구 및 자동소화장치의 화재안전기술기준",
           "status": "ERROR",
           "revisionType": "",
           "announceDate": "",
@@ -108,10 +268,10 @@
           "scope": "NFTC",
           "code": "NFTC_102",
           "title": "옥내소화전설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -121,17 +281,17 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_103",
           "title": "스프링클러설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.12.01",
+          "effectiveDate": "2024.12.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -141,17 +301,17 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_103A",
           "title": "간이스프링클러설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.12.01",
+          "effectiveDate": "2024.12.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -161,17 +321,17 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_106",
           "title": "이산화탄소소화설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.10",
+          "effectiveDate": "2024.08.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -181,17 +341,17 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_302",
           "title": "인명구조기구의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.02.27",
+          "effectiveDate": "2026.03.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -201,13 +361,33 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_402",
           "title": "소화수조 및 저수조의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_602",
+          "title": "소방시설용 비상전원수전설비의 화재안전기술기준",
           "status": "ERROR",
           "revisionType": "",
           "announceDate": "",
@@ -228,10 +408,10 @@
           "scope": "NFTC",
           "code": "NFTC_609",
           "title": "창고시설의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2023.12.29",
+          "effectiveDate": "2024.01.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -241,7 +421,7 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         }
       ]
