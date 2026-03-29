@@ -1,6 +1,30 @@
 {
-  "lastRun": "2026-03-28T12:49:35+09:00",
+  "lastRun": "2026-03-29T13:16:04+09:00",
   "records": [
+    {
+      "date": "2026-03-29",
+      "checkedAt": "2026-03-29T13:16:04+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 없음",
+      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        }
+      },
+      "changes": []
+    },
     {
       "date": "2026-03-28",
       "checkedAt": "2026-03-28T12:49:35+09:00",
