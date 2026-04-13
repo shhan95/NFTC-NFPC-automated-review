@@ -1,6 +1,51 @@
 {
-  "lastRun": "2026-04-12T13:25:47+09:00",
+  "lastRun": "2026-04-13T13:45:11+09:00",
   "records": [
+    {
+      "date": "2026-04-13",
+      "checkedAt": "2026-04-13T13:45:11+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 0,
+          "error": 1,
+          "changed": 1
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFTC",
+          "code": "NFTC_202",
+          "title": "비상방송설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-04-12",
       "checkedAt": "2026-04-12T13:25:47+09:00",
