@@ -7,16 +7,18 @@
   --line-soft: #2c313a;
   --text: #e6e8eb;
   --muted: #8b92a5;
-  --ok: #4ade80; /* 더 밝고 쨍한 네온 그린 */
+  --ok: #4ade80; 
   --warn: #facc15;
   --err: #f87171;
-  --accent: #3b82f6; /* 선명한 블루 (원문 버튼용) */
+  --accent: #3b82f6; 
+  --nfpc: #60a5fa; /* NFPC용 블루 */
+  --nftc: #c084fc; /* NFTC용 퍼플 */
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
   color: var(--text);
   background-color: var(--bg);
 }
@@ -36,7 +38,7 @@ h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
 }
 .statCard:hover { transform: translateY(-2px); border-color: #4b5363; }
 .statCard .label { color: var(--muted); font-size: 13px; font-weight: 500; margin-bottom: 8px; }
@@ -91,9 +93,8 @@ h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
 .btn.ghost { background: transparent; border: 1px solid var(--line); }
 .btn.ghost:hover { background: var(--panel-hover); }
 
-/* 목록 아이템 */
+/* 목록 아이템 (스크롤바 포함) */
 .list, .logList { display: flex; flex-direction: column; gap: 10px; max-height: 65vh; overflow-y: auto; padding-right: 6px; }
-/* 스크롤바 디자인 */
 .list::-webkit-scrollbar, .logList::-webkit-scrollbar { width: 6px; }
 .list::-webkit-scrollbar-thumb, .logList::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
 
@@ -102,47 +103,61 @@ h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
   border-radius: 10px;
   padding: 14px;
   background: var(--bg);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
-.item { cursor: pointer; }
-.item:hover { background: var(--panel-hover); border-color: var(--line); transform: translateX(2px); }
+.item:hover, .logItem:hover { 
+  background: var(--panel-hover); 
+  border-color: var(--line); 
+  transform: translateX(3px); 
+}
 
 .itemTop, .logTop { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .code { font-weight: 700; font-size: 15px; color: var(--text); }
 .title { color: var(--text); font-size: 14px; margin-top: 4px; line-height: 1.4; }
-.small { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.small { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 
-/* 뱃지 디자인 */
-.badge { font-size: 12px; font-weight: 700; border-radius: 6px; padding: 4px 8px; letter-spacing: 0.5px; }
-.badge.ok { color: #10b981; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); }
-.badge.warn { color: #f59e0b; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge.err { color: #ef4444; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); }
+/* 뱃지 디자인 (다크 모드에 최적화된 반투명 네온) */
+.badge { font-size: 12px; font-weight: 700; border-radius: 6px; padding: 4px 8px; letter-spacing: 0.5px; display: inline-block; text-align: center; }
+.badge.ok { color: var(--ok); background: rgba(74, 222, 128, 0.15); border: 1px solid rgba(74, 222, 128, 0.3); }
+.badge.warn { color: var(--warn); background: rgba(250, 204, 21, 0.15); border: 1px solid rgba(250, 204, 21, 0.3); }
+.badge.err { color: var(--err); background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.3); }
+
+/* 신규 추가: NFPC / NFTC 전용 뱃지 */
+.badge.nfpc { color: var(--nfpc); background: rgba(96, 165, 250, 0.15); border: 1px solid rgba(96, 165, 250, 0.3); }
+.badge.nftc { color: var(--nftc); background: rgba(192, 132, 252, 0.15); border: 1px solid rgba(192, 132, 252, 0.3); }
 
 .summaryBox { border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 16px; background: var(--bg); }
 
-/* 팝업 모달 (이미지와 비슷하게 둥글고 세련되게) */
+/* 팝업 모달 (Dialog) */
 .dialog {
-  width: min(600px, 92vw);
+  width: min(800px, 92vw); /* 상세 표를 위해 너비를 조금 더 넓힘 */
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--panel);
   color: var(--text);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   padding: 0;
 }
-.dialog::backdrop { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
-.dialogHead { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--line-soft); }
+.dialog::backdrop { background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); }
+.dialogHead { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--line-soft); background: rgba(255,255,255,0.02); }
 .dialogHead h3 { margin: 0; font-size: 18px; font-weight: 600; }
-.dialogBody { padding: 20px; max-height: 70vh; overflow-y: auto; }
+.dialogBody { padding: 24px; max-height: 70vh; overflow-y: auto; }
 
-.table { width: 100%; border-collapse: separate; border-spacing: 0; }
-.table th, .table td { border-bottom: 1px solid var(--line-soft); font-size: 14px; padding: 12px 8px; text-align: left; }
-.table th { color: var(--muted); font-weight: 500; width: 35%; }
+/* 공통 테이블 (Table) 스타일 */
+.table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.table th, .table td { 
+  border-bottom: 1px solid var(--line-soft); 
+  font-size: 14px; 
+  padding: 14px 10px; 
+  text-align: left; 
+  vertical-align: middle; 
+}
+.table th { color: var(--muted); font-weight: 600; background-color: rgba(0,0,0,0.15); }
 .table tr:last-child th, .table tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background-color: rgba(255,255,255,0.02); } /* 행에 마우스 올렸을 때 강조 */
 
-/* =========================================
-   💡 개정이유 브리핑 박스 & 버튼 디자인 
-   ========================================= */
+/* 개정이유 브리핑 박스 & 버튼 디자인 */
 .reasonBox {
   margin-top: 12px;
   padding: 16px;
