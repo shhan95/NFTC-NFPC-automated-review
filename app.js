@@ -52,7 +52,7 @@ function renderStandards() {
     .map((s) => {
       const meta = snap[s.code] || { status: "NOT_FOUND" };
       return `
-        <div class="item" data-code="${esc(s.code)}">
+        <div class="item" data-code="${esc(s.code)}" style="cursor: pointer;">
           <div class="itemTop">
             <div>
               <div class="code">${esc(s.code)}</div>
@@ -75,6 +75,7 @@ function renderStandards() {
   });
 }
 
+// 💡 수정됨: 긴 상세 내역을 감추고 클릭을 유도하도록 변경
 function renderLogs() {
   const records = LOG.records || [];
   const latest = records[0];
@@ -89,42 +90,32 @@ function renderLogs() {
   }
 
   const html = records
-    .map((r) => {
-      let changesHtml = "";
-      if (r.changes && r.changes.length > 0) {
-        changesHtml = r.changes.map(c => {
-          let box = `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line-soft);">`;
-          box += `<div class="small"><b>${esc(c.code)}</b> : ${esc(c.title)} <span class="muted">(${esc(c.revisionType || "변경")})</span></div>`;
-          
-          if (c.reason) {
-            box += `<div class="reasonBox">
-                      <div class="reasonLabel">개정이유 브리핑</div>
-                      ${esc(c.reason)}
-                    </div>`;
-          }
-          box += `</div>`;
-          return box;
-        }).join("");
-      } else {
-        changesHtml = `<div class="small" style="margin-top: 6px;">변경 항목: -</div>`;
-      }
-
+    .map((r, index) => {
       return `
-        <div class="logItem">
-          <div class="logTop">
+        <div class="logItem" data-index="${index}" style="cursor: pointer; padding: 12px; margin-bottom: 8px; border: 1px solid var(--line-soft, #ddd); border-radius: 6px;">
+          <div class="logTop" style="display: flex; justify-content: space-between; margin-bottom: 4px;">
             <div><b>${esc(r.date)}</b></div>
-            <div>${r.result === "변경 있음" ? '<span class="badge warn">변경 있음</span>' : '<span class="badge ok">변경 없음</span>'}</div>
+            <div>${r.result === "변경 있음" ? '<span class="badge warn" style="color:red;">변경 있음</span>' : '<span class="badge ok" style="color:green;">변경 없음</span>'}</div>
           </div>
           <div class="small">${esc(r.summary || "")}</div>
-          ${changesHtml}
+          <div class="small muted" style="margin-top: 6px; color: #666;">👉 클릭하여 상세 내역 및 사유 확인</div>
         </div>
       `;
     })
     .join("");
 
   $("logList").innerHTML = html || `<div class="small">로그가 없습니다.</div>`;
+
+  // 💡 추가됨: 로그 아이템 클릭 시 다이얼로그 오픈 이벤트 바인딩
+  document.querySelectorAll(".logItem").forEach((el) => {
+    el.addEventListener("click", () => {
+      const idx = el.dataset.index;
+      openLogDetail(records[idx]);
+    });
+  });
 }
 
+// 기존: 기준 목록(Standards) 클릭 시 상세 팝업
 function openDetail(code) {
   const list = loadCurrentList();
   const s = list.find((x) => x.code === code);
@@ -132,7 +123,6 @@ function openDetail(code) {
 
   $("dlgTitle").textContent = `${code} · ${s?.title || ""}`;
   
-  // 💡 핵심 추가: API가 링크를 안 주면, 우리가 저장해둔 고유 일련번호(seq)로 직접 링크를 강제 조립합니다!
   let finalUrl = meta.htmlUrl;
   if (!finalUrl && meta.seq) {
     finalUrl = `https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=${meta.seq}`;
@@ -141,7 +131,7 @@ function openDetail(code) {
   let linkButton = finalUrl 
     ? `<div style="margin-top: 16px; text-align: center;">
          <a href="${esc(finalUrl)}" target="_blank" rel="noreferrer" style="display: block; padding: 14px; background: var(--accent); color: #0b1220; font-size: 15px; font-weight: 800; text-decoration: none; border-radius: 10px; transition: 0.2s;">
-           📖 공식 법령 전문 보러가기 (새창)
+            📖 공식 법령 전문 보러가기 (새창)
          </a>
        </div>`
     : `<div style="margin-top: 16px; text-align: center; color: var(--warn); font-size: 14px;">원문 링크를 아직 불러올 수 없습니다.</div>`;
@@ -161,6 +151,64 @@ function openDetail(code) {
     ${linkButton}
   `;
 
+  $("detailDialog").showModal();
+}
+
+// 💡 신규 추가됨: 이력(로그) 클릭 시 상세 팝업
+function openLogDetail(record) {
+  $("dlgTitle").textContent = `${esc(record.date)} 점검 상세 내역`;
+
+  // 변경 내역이 없는 날짜인 경우
+  if (!record.changes || record.changes.length === 0) {
+    $("dlgBody").innerHTML = `<div style="padding: 20px; text-align: center; color: #666;">이 날짜에는 감지된 변경 사항이나 오류가 없습니다.</div>`;
+    $("detailDialog").showModal();
+    return;
+  }
+
+  // 표(Table) 헤더 구성
+  let html = `
+    <table class="table" style="width: 100%; text-align: left; border-collapse: collapse;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--line-soft, #ddd);">
+          <th style="padding: 8px;">구분</th>
+          <th style="padding: 8px;">법령명 (코드)</th>
+          <th style="padding: 8px;">개정유형</th>
+          <th style="padding: 8px;">비고 (개정이유 등)</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  // 데이터 바인딩
+  record.changes.forEach((c) => {
+    // 뱃지 색상 하드코딩 (기존 style.css에 없을 수 있으므로 인라인 스타일 추가)
+    const scopeBadge = c.scope === "NFPC" 
+      ? `<span class="badge" style="background:#0366d6; color:white; padding:3px 6px; border-radius:4px;">NFPC</span>` 
+      : `<span class="badge" style="background:#6f42c1; color:white; padding:3px 6px; border-radius:4px;">NFTC</span>`;
+    
+    // ERROR 상태 표시 처리
+    const statusHtml = c.status === "ERROR" 
+      ? `<span style="color:red; font-weight:bold;">ERROR</span>` 
+      : esc(c.revisionType || "-");
+
+    const reasonHtml = c.reason || (c.status === "ERROR" ? "데이터 수집 오류" : "-");
+
+    html += `
+      <tr style="border-bottom: 1px solid var(--line-soft, #eee);">
+        <td style="padding: 8px;">${scopeBadge}</td>
+        <td style="padding: 8px;">
+          <b>${esc(c.code)}</b><br>
+          <span style="font-size:13px; color:#555;">${esc(c.title)}</span>
+        </td>
+        <td style="padding: 8px;">${statusHtml}</td>
+        <td style="padding: 8px; font-size:13px; line-height:1.4;">${esc(reasonHtml)}</td>
+      </tr>
+    `;
+  });
+
+  html += `</tbody></table>`;
+  
+  $("dlgBody").innerHTML = html;
   $("detailDialog").showModal();
 }
 
