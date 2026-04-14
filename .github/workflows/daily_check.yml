@@ -21,6 +21,7 @@ jobs:
       ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
       TZ: Asia/Seoul
       LAWGO_REQUEST_GAP: "2.5"  # <--- 이 훌륭한 안전장치는 무조건 살려둡니다!
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"  # 💡 Node.js 경고 해결용 강제 24버전 사용
       
     steps:
       - uses: actions/checkout@v4
