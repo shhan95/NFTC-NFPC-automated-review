@@ -1,1725 +1,336 @@
-{
-  "lastRun": "2026-04-14T13:24:32+09:00",
-  "records": [
-    {
-      "date": "2026-04-14",
-      "checkedAt": "2026-04-14T13:24:32+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 1
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFPC/NFTC 자동 모니터링 대시보드</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
-      },
-      "changes": [
-        {
-          "scope": "NFTC",
-          "code": "NFTC_202",
-          "title": "비상방송설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2023.02.10",
-          "effectiveDate": "2023.02.10",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
+        h1, h2, h3 {
+            color: #2c3e50;
         }
-      ]
-    },
-    {
-      "date": "2026-04-13",
-      "checkedAt": "2026-04-13T13:45:11+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 40,
-          "notFound": 0,
-          "error": 1,
-          "changed": 1
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-      },
-      "changes": [
-        {
-          "scope": "NFTC",
-          "code": "NFTC_202",
-          "title": "비상방송설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
+        
+        /* 요약 카드 스타일 */
+        .summary-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
         }
-      ]
-    },
-    {
-      "date": "2026-04-12",
-      "checkedAt": "2026-04-12T13:25:47+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .card {
+            flex: 1;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f1f8ff;
+            border: 1px solid #c8e1ff;
+            text-align: center;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-11",
-      "checkedAt": "2026-04-11T12:51:22+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .card h3 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #0366d6;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-10",
-      "checkedAt": "2026-04-10T13:23:15+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 0 0;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-09",
-      "checkedAt": "2026-04-09T13:08:54+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+
+        /* 변경 이력 리스트 스타일 */
+        .history-list {
+            list-style: none;
+            padding: 0;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-08",
-      "checkedAt": "2026-04-08T13:13:58+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .history-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-07",
-      "checkedAt": "2026-04-07T13:13:07+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .history-item:hover {
+            background-color: #f1f8ff;
+            border-color: #c8e1ff;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-06",
-      "checkedAt": "2026-04-06T13:24:33+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .history-date {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-05",
-      "checkedAt": "2026-04-05T13:15:32+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .history-summary {
+            color: #0366d6;
+            font-weight: bold;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-04",
-      "checkedAt": "2026-04-04T12:47:52+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        
+        /* 배지 스타일 */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-03",
-      "checkedAt": "2026-04-03T13:08:10+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .badge.changed { background-color: #e74c3c; }
+        .badge.no-change { background-color: #2ecc71; }
+        .badge.nfpc { background-color: #3498db; }
+        .badge.nftc { background-color: #9b59b6; }
+
+        /* 모달 (팝업창) 스타일 */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto; /* 내용이 길면 스크롤 */
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-02",
-      "checkedAt": "2026-04-02T13:06:49+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 70%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-04-01",
-      "checkedAt": "2026-04-01T13:28:30+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-31",
-      "checkedAt": "2026-03-31T13:13:04+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .close-btn:hover { color: #333; }
+        
+        /* 상세 변경 내역 테이블 */
+        .changes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-30",
-      "checkedAt": "2026-03-30T13:22:56+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .changes-table th, .changes-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-29",
-      "checkedAt": "2026-03-29T13:16:04+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .changes-table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-28",
-      "checkedAt": "2026-03-28T12:49:35+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+        .no-changes-msg {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-style: italic;
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-27",
-      "checkedAt": "2026-03-27T15:10:52+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>NFPC/NFTC 자동 모니터링 대시보드</h1>
+    <p>국가법령정보센터 OPEN API 기반 · 전체 기준 일일 점검</p>
+    <p id="last-update" style="color: #7f8c8d; font-size: 14px;">데이터 불러오는 중...</p>
+
+    <div class="summary-cards">
+        <div class="card">
+            <h3>최근 점검일 변경 사항</h3>
+            <p id="latest-changed-count">- 건</p>
+        </div>
+        <div class="card">
+            <h3>NFPC 상태 (최근)</h3>
+            <p id="nfpc-status" style="font-size: 16px; margin-top:15px;">-</p>
+        </div>
+        <div class="card">
+            <h3>NFTC 상태 (최근)</h3>
+            <p id="nftc-status" style="font-size: 16px; margin-top:15px;">-</p>
+        </div>
+    </div>
+
+    <h2>변경 이력 (클릭하여 상세 보기)</h2>
+    <div id="history-container">
+        <p>데이터를 불러오는 중입니다...</p>
+    </div>
+</div>
+
+<div id="detailModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modal-date">YYYY-MM-DD 상세 내역</h2>
+        
+        <div id="modal-summary-box" style="background: #f1f8ff; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <strong id="modal-summary-text"></strong>
+        </div>
+
+        <h3>📝 상세 변경 사항</h3>
+        <div id="modal-details-container">
+            </div>
+    </div>
+</div>
+
+<script>
+    // data.json 파일을 불러오는 함수
+    async function fetchData() {
+        try {
+            // 실제 환경에서는 fetch('./data.json') 경로를 사용하세요.
+            const response = await fetch('data.json'); 
+            const data = await response.json();
+            
+            updateDashboard(data);
+            renderHistory(data.records);
+        } catch (error) {
+            console.error('데이터 로드 실패:', error);
+            document.getElementById('history-container').innerHTML = '<p style="color:red;">데이터를 불러오는 데 실패했습니다.</p>';
         }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-26",
-      "checkedAt": "2026-03-26T15:08:32+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-25",
-      "checkedAt": "2026-03-25T14:51:01+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-24",
-      "checkedAt": "2026-03-24T14:49:14+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-23",
-      "checkedAt": "2026-03-23T15:06:01+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-22",
-      "checkedAt": "2026-03-22T14:39:41+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-21",
-      "checkedAt": "2026-03-21T14:16:31+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-20",
-      "checkedAt": "2026-03-20T14:26:35+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-19",
-      "checkedAt": "2026-03-19T14:48:16+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-18",
-      "checkedAt": "2026-03-18T14:51:55+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-17",
-      "checkedAt": "2026-03-17T14:48:36+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-16",
-      "checkedAt": "2026-03-16T15:18:56+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-15",
-      "checkedAt": "2026-03-15T15:01:28+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 7건 변경 | NFTC 2건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 7
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 2
-        }
-      },
-      "changes": [
-        {
-          "scope": "NFPC",
-          "code": "NFPC_104",
-          "title": "물분무소화설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "타법개정",
-          "announceDate": "2025.12.24",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_107",
-          "title": "할론소화설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2023.02.10",
-          "effectiveDate": "2023.02.10",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_401",
-          "title": "상수도소화용수설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "전부개정",
-          "announceDate": "2022.11.25",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_501",
-          "title": "제연설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2024.09.13",
-          "effectiveDate": "2024.10.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_503",
-          "title": "연결살수설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "타법개정",
-          "announceDate": "2025.12.24",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_504",
-          "title": "비상콘센트설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "타법개정",
-          "announceDate": "2023.10.13",
-          "effectiveDate": "2024.01.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_605",
-          "title": "지하구의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "전부개정",
-          "announceDate": "2022.11.25",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_101",
-          "title": "소화기구 및 자동소화장치의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2024.07.25",
-          "effectiveDate": "2024.07.25",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_602",
-          "title": "소방시설용 비상전원수전설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "제정",
-          "announceDate": "2022.12.01",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-03-14",
-      "checkedAt": "2026-03-14T15:18:01+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 11건 변경 | NFTC 9건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 34,
-          "notFound": 0,
-          "error": 7,
-          "changed": 11
-        },
-        "nftc": {
-          "total": 41,
-          "found": 39,
-          "notFound": 0,
-          "error": 2,
-          "changed": 9
-        }
-      },
-      "changes": [
-        {
-          "scope": "NFPC",
-          "code": "NFPC_103",
-          "title": "스프링클러설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2025.12.24",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_104",
-          "title": "물분무소화설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_107",
-          "title": "할론소화설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_109",
-          "title": "옥외소화전설비의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2025.12.31",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_205",
-          "title": "누전경보기의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "전부개정",
-          "announceDate": "2022.11.25",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_206",
-          "title": "가스누설경보기의 화재안전성능기준",
-          "status": "FOUND",
-          "revisionType": "전부개정",
-          "announceDate": "2022.11.25",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_401",
-          "title": "상수도소화용수설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_501",
-          "title": "제연설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_503",
-          "title": "연결살수설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_504",
-          "title": "비상콘센트설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFPC",
-          "code": "NFPC_605",
-          "title": "지하구의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_101",
-          "title": "소화기구 및 자동소화장치의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_102",
-          "title": "옥내소화전설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "제정",
-          "announceDate": "2022.12.01",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_103",
-          "title": "스프링클러설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2024.12.01",
-          "effectiveDate": "2024.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_103A",
-          "title": "간이스프링클러설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2024.12.01",
-          "effectiveDate": "2024.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_106",
-          "title": "이산화탄소소화설비의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2024.07.10",
-          "effectiveDate": "2024.08.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_302",
-          "title": "인명구조기구의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2026.02.27",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_402",
-          "title": "소화수조 및 저수조의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "제정",
-          "announceDate": "2022.12.01",
-          "effectiveDate": "2022.12.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_602",
-          "title": "소방시설용 비상전원수전설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "",
-          "url": ""
-        },
-        {
-          "scope": "NFTC",
-          "code": "NFTC_609",
-          "title": "창고시설의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "제정",
-          "announceDate": "2023.12.29",
-          "effectiveDate": "2024.01.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash",
-            "error"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-03-13",
-      "checkedAt": "2026-03-13T14:23:33+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-12",
-      "checkedAt": "2026-03-12T14:27:12+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-11",
-      "checkedAt": "2026-03-11T14:22:32+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 1
-        }
-      },
-      "changes": [
-        {
-          "scope": "NFTC",
-          "code": "NFTC_301",
-          "title": "피난기구의 화재안전기술기준",
-          "status": "FOUND",
-          "revisionType": "일부개정",
-          "announceDate": "2026.02.27",
-          "effectiveDate": "2026.03.01",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash"
-          ],
-          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-03-10",
-      "checkedAt": "2026-03-10T14:19:17+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 있음",
-      "summary": "NFPC 0건 변경 | NFTC 1건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 40,
-          "notFound": 1,
-          "error": 0,
-          "changed": 1
-        }
-      },
-      "changes": [
-        {
-          "scope": "NFTC",
-          "code": "NFTC_301",
-          "title": "피난기구의 화재안전기술기준",
-          "status": "NOT_FOUND",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
-          "changedFields": [
-            "status",
-            "noticeNo",
-            "announceDate",
-            "effectiveDate",
-            "revisionType",
-            "sourceHash"
-          ],
-          "reason": "",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-03-09",
-      "checkedAt": "2026-03-09T14:43:14+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-08",
-      "checkedAt": "2026-03-08T14:18:24+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-07",
-      "checkedAt": "2026-03-07T13:57:11+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-06",
-      "checkedAt": "2026-03-06T14:20:18+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-05",
-      "checkedAt": "2026-03-05T14:24:04+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-04",
-      "checkedAt": "2026-03-04T12:23:11+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-03",
-      "checkedAt": "2026-03-03T15:39:49+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경 | NFTC 0건 변경",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 41,
-          "notFound": 0,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
-    },
-    {
-      "date": "2026-03-02",
-      "checkedAt": "2026-03-02T17:12:53+09:00",
-      "scope": "NFPC/NFTC",
-      "result": "변경 없음",
-      "summary": "NFPC 0건 변경(전체 41 / 성공 0 / 미검출 41 / 오류 0) | NFTC 0건 변경(전체 41 / 성공 0 / 미검출 41 / 오류 0)",
-      "stats": {
-        "nfpc": {
-          "total": 41,
-          "found": 0,
-          "notFound": 41,
-          "error": 0,
-          "changed": 0
-        },
-        "nftc": {
-          "total": 41,
-          "found": 0,
-          "notFound": 41,
-          "error": 0,
-          "changed": 0
-        }
-      },
-      "changes": []
     }
-  ]
-}
+
+    // 대시보드 상단 요약 정보 업데이트
+    function updateDashboard(data) {
+        if (!data || !data.records || data.records.length === 0) return;
+
+        // 가장 최근 데이터
+        const latest = data.records[0];
+        
+        document.getElementById('last-update').innerText = `마지막 실행: ${new Date(data.lastRun).toLocaleString()}`;
+        
+        const totalChanged = latest.stats.nfpc.changed + latest.stats.nftc.changed;
+        document.getElementById('latest-changed-count').innerText = `${totalChanged} 건`;
+        document.getElementById('latest-changed-count').style.color = totalChanged > 0 ? '#e74c3c' : '#2ecc71';
+
+        document.getElementById('nfpc-status').innerText = `전체 ${latest.stats.nfpc.total} | 발견 ${latest.stats.nfpc.found} | 에러 ${latest.stats.nfpc.error} | 변경 ${latest.stats.nfpc.changed}`;
+        document.getElementById('nftc-status').innerText = `전체 ${latest.stats.nftc.total} | 발견 ${latest.stats.nftc.found} | 에러 ${latest.stats.nftc.error} | 변경 ${latest.stats.nftc.changed}`;
+    }
+
+    // 변경 이력 리스트 렌더링
+    function renderHistory(records) {
+        const container = document.getElementById('history-container');
+        container.innerHTML = ''; // 기존 내용 지우기
+
+        const ul = document.createElement('ul');
+        ul.className = 'history-list';
+
+        records.forEach(record => {
+            const li = document.createElement('li');
+            li.className = 'history-item';
+            
+            // 변경 유무에 따른 뱃지
+            const isChanged = record.result === "변경 있음";
+            const badgeClass = isChanged ? 'badge changed' : 'badge no-change';
+            
+            li.innerHTML = `
+                <div class="history-date">${record.date} <span style="font-size: 12px; color: #888;">(${new Date(record.checkedAt).toLocaleTimeString()})</span></div>
+                <div>
+                    <span class="${badgeClass}">${record.result}</span>
+                    <span class="history-summary">${record.summary}</span>
+                </div>
+            `;
+            
+            // 리스트 클릭 이벤트 추가
+            li.onclick = () => openModal(record);
+            ul.appendChild(li);
+        });
+
+        container.appendChild(ul);
+    }
+
+    // 모달 열기 및 데이터 채우기
+    function openModal(record) {
+        document.getElementById('modal-date').innerText = `${record.date} 점검 결과`;
+        document.getElementById('modal-summary-text').innerText = record.summary;
+
+        const detailsContainer = document.getElementById('modal-details-container');
+        detailsContainer.innerHTML = ''; // 초기화
+
+        // 변경된 항목이 없는 경우
+        if (!record.changes || record.changes.length === 0) {
+            detailsContainer.innerHTML = '<div class="no-changes-msg">이 날짜에는 감지된 변경 사항이나 오류가 없습니다.</div>';
+        } else {
+            // 변경 내역이 있는 경우 테이블 생성
+            let tableHTML = `
+                <table class="changes-table">
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>코드명 / 법령명</th>
+                            <th>상태</th>
+                            <th>개정유형 / 시행일</th>
+                            <th>비고 (개정이유 등)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            record.changes.forEach(change => {
+                const scopeBadge = change.scope === 'NFPC' ? '<span class="badge nfpc">NFPC</span>' : '<span class="badge nftc">NFTC</span>';
+                
+                // 에러 상태일 경우 스타일 다르게 처리
+                const statusColor = change.status === 'ERROR' ? 'color: red; font-weight: bold;' : 'color: green;';
+                
+                // 개정 유형이나 사유가 빈 값일 경우 처리
+                const revisionInfo = change.revisionType ? `${change.revisionType}<br><span style="font-size:12px;color:#666;">(시행: ${change.effectiveDate})</span>` : '-';
+                const reasonInfo = change.reason || (change.status === 'ERROR' ? '데이터 수집 중 오류 발생' : '-');
+
+                tableHTML += `
+                    <tr>
+                        <td style="text-align:center;">${scopeBadge}</td>
+                        <td>
+                            <strong>${change.code}</strong><br>
+                            ${change.title}
+                        </td>
+                        <td style="${statusColor}">${change.status}</td>
+                        <td>${revisionInfo}</td>
+                        <td>${reasonInfo}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `</tbody></table>`;
+            detailsContainer.innerHTML = tableHTML;
+        }
+
+        document.getElementById('detailModal').style.display = "block";
+    }
+
+    // 모달 닫기
+    function closeModal() {
+        document.getElementById('detailModal').style.display = "none";
+    }
+
+    // 모달 바깥 배경 클릭 시 닫기
+    window.onclick = function(event) {
+        const modal = document.getElementById('detailModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // 스크립트 실행 (데이터 불러오기)
+    fetchData();
+</script>
+
+</body>
+</html>
