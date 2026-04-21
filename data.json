@@ -1,25 +1,25 @@
 {
-  "lastRun": "2026-04-21T13:34:11+09:00",
+  "lastRun": "2026-04-21T13:45:05+09:00",
   "records": [
     {
       "date": "2026-04-21",
-      "checkedAt": "2026-04-21T13:34:11+09:00",
+      "checkedAt": "2026-04-21T13:45:05+09:00",
       "scope": "NFPC/NFTC",
       "result": "변경 있음",
       "summary": "NFPC 1건 변경 | NFTC 1건 변경",
       "stats": {
         "nfpc": {
           "total": 41,
-          "found": 40,
+          "found": 41,
           "notFound": 0,
-          "error": 1,
+          "error": 0,
           "changed": 1
         },
         "nftc": {
           "total": 41,
-          "found": 40,
+          "found": 41,
           "notFound": 0,
-          "error": 1,
+          "error": 0,
           "changed": 1
         }
       },
@@ -28,10 +28,10 @@
           "scope": "NFPC",
           "code": "NFPC_110",
           "title": "고체에어로졸소화설비의 화재안전성능기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "전부개정",
+          "announceDate": "2022.11.25",
+          "effectiveDate": "2022.12.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -41,17 +41,17 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         },
         {
           "scope": "NFTC",
           "code": "NFTC_102",
           "title": "옥내소화전설비의 화재안전기술기준",
-          "status": "ERROR",
-          "revisionType": "",
-          "announceDate": "",
-          "effectiveDate": "",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
           "changedFields": [
             "status",
             "noticeNo",
@@ -61,7 +61,7 @@
             "sourceHash",
             "error"
           ],
-          "reason": "",
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
           "url": ""
         }
       ]
