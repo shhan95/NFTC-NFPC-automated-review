@@ -1,6 +1,71 @@
 {
-  "lastRun": "2026-04-20T13:34:37+09:00",
+  "lastRun": "2026-04-21T13:34:11+09:00",
   "records": [
+    {
+      "date": "2026-04-21",
+      "checkedAt": "2026-04-21T13:34:11+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 1건 변경 | NFTC 1건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 0,
+          "error": 1,
+          "changed": 1
+        },
+        "nftc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 0,
+          "error": 1,
+          "changed": 1
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_110",
+          "title": "고체에어로졸소화설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_102",
+          "title": "옥내소화전설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-04-20",
       "checkedAt": "2026-04-20T13:34:37+09:00",
