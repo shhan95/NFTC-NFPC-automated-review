@@ -1,6 +1,91 @@
 {
-  "lastRun": "2026-04-29T13:46:46+09:00",
+  "lastRun": "2026-04-30T14:00:28+09:00",
   "records": [
+    {
+      "date": "2026-04-30",
+      "checkedAt": "2026-04-30T14:00:28+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 2건 변경 | NFTC 1건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 39,
+          "notFound": 0,
+          "error": 2,
+          "changed": 2
+        },
+        "nftc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 0,
+          "error": 1,
+          "changed": 1
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_503",
+          "title": "연결살수설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_606",
+          "title": "건설현장의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_106",
+          "title": "이산화탄소소화설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-04-29",
       "checkedAt": "2026-04-29T13:46:46+09:00",
