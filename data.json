@@ -1,6 +1,91 @@
 {
-  "lastRun": "2026-04-30T14:00:28+09:00",
+  "lastRun": "2026-05-01T14:03:39+09:00",
   "records": [
+    {
+      "date": "2026-05-01",
+      "checkedAt": "2026-05-01T14:03:39+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 2건 변경 | NFTC 1건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 2
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 1
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_503",
+          "title": "연결살수설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "타법개정",
+          "announceDate": "2025.12.24",
+          "effectiveDate": "2026.03.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_606",
+          "title": "건설현장의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "전부개정",
+          "announceDate": "2023.06.28",
+          "effectiveDate": "2023.07.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_106",
+          "title": "이산화탄소소화설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.10",
+          "effectiveDate": "2024.08.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-04-30",
       "checkedAt": "2026-04-30T14:00:28+09:00",
