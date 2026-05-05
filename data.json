@@ -1,6 +1,85 @@
 {
-  "lastRun": "2026-05-04T13:58:16+09:00",
+  "lastRun": "2026-05-05T13:40:22+09:00",
   "records": [
+    {
+      "date": "2026-05-05",
+      "checkedAt": "2026-05-05T13:40:22+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 0건 변경 | NFTC 3건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 39,
+          "notFound": 0,
+          "error": 2,
+          "changed": 3
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFTC",
+          "code": "NFTC_101",
+          "title": "소화기구 및 자동소화장치의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.25",
+          "effectiveDate": "2024.07.25",
+          "changedFields": [
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_104A",
+          "title": "미분무소화설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_505",
+          "title": "무선통신보조설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-05-04",
       "checkedAt": "2026-05-04T13:58:16+09:00",
