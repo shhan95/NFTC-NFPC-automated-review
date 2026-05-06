@@ -1,6 +1,71 @@
 {
-  "lastRun": "2026-05-05T13:40:22+09:00",
+  "lastRun": "2026-05-06T13:49:42+09:00",
   "records": [
+    {
+      "date": "2026-05-06",
+      "checkedAt": "2026-05-06T13:49:42+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 0건 변경 | NFTC 2건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 2
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFTC",
+          "code": "NFTC_104A",
+          "title": "미분무소화설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2023.02.10",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_505",
+          "title": "무선통신보조설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-05-05",
       "checkedAt": "2026-05-05T13:40:22+09:00",
