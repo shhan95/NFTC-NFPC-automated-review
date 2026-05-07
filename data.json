@@ -1,6 +1,245 @@
 {
-  "lastRun": "2026-05-06T13:49:42+09:00",
+  "lastRun": "2026-05-07T13:59:56+09:00",
   "records": [
+    {
+      "date": "2026-05-07",
+      "checkedAt": "2026-05-07T13:59:56+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 12건 변경 | NFTC 0건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 12
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_108",
+          "title": "분말소화설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_110",
+          "title": "고체에어로졸소화설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_201",
+          "title": "비상경보설비 및 단독경보형감지기의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_205",
+          "title": "누전경보기의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_304",
+          "title": "비상조명등의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_401",
+          "title": "상수도소화용수설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_402",
+          "title": "소화수조 및 저수조의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_503",
+          "title": "연결살수설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_504",
+          "title": "비상콘센트설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_505",
+          "title": "무선통신보조설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_602",
+          "title": "소방시설용 비상전원수전설비의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_607",
+          "title": "전기저장시설의 화재안전성능기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.05.04",
+          "effectiveDate": "2026.05.04",
+          "changedFields": [
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "sourceHash"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-05-06",
       "checkedAt": "2026-05-06T13:49:42+09:00",
