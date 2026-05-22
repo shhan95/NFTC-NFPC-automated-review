@@ -1,6 +1,91 @@
 {
-  "lastRun": "2026-05-21T14:25:48+09:00",
+  "lastRun": "2026-05-22T14:23:28+09:00",
   "records": [
+    {
+      "date": "2026-05-22",
+      "checkedAt": "2026-05-22T14:23:28+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 3건 변경 | NFTC 0건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 38,
+          "notFound": 0,
+          "error": 3,
+          "changed": 3
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_101",
+          "title": "소화기구 및 자동소화장치의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_103",
+          "title": "스프링클러설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFPC",
+          "code": "NFPC_103B",
+          "title": "화재조기진압용 스프링클러설비의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-05-21",
       "checkedAt": "2026-05-21T14:25:48+09:00",
