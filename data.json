@@ -1,6 +1,171 @@
 {
-  "lastRun": "2026-05-23T13:57:23+09:00",
+  "lastRun": "2026-05-24T14:35:24+09:00",
   "records": [
+    {
+      "date": "2026-05-24",
+      "checkedAt": "2026-05-24T14:35:24+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 1건 변경 | NFTC 6건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 40,
+          "notFound": 0,
+          "error": 1,
+          "changed": 1
+        },
+        "nftc": {
+          "total": 41,
+          "found": 35,
+          "notFound": 0,
+          "error": 6,
+          "changed": 6
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFPC",
+          "code": "NFPC_603",
+          "title": "도로터널의 화재안전성능기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_206",
+          "title": "가스누설경보기의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_401",
+          "title": "상수도소화용수설비의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_606",
+          "title": "건설현장의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_607",
+          "title": "전기저장시설의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_608",
+          "title": "공동주택의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_609",
+          "title": "창고시설의 화재안전기술기준",
+          "status": "ERROR",
+          "revisionType": "",
+          "announceDate": "",
+          "effectiveDate": "",
+          "changedFields": [
+            "status",
+            "noticeNo",
+            "announceDate",
+            "effectiveDate",
+            "revisionType",
+            "sourceHash",
+            "error"
+          ],
+          "reason": "",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-05-23",
       "checkedAt": "2026-05-23T13:57:23+09:00",
