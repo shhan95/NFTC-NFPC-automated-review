@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: nfpc-nftc-daily
-  cancel-in-progress: false
+  cancel-in-progress: true  # 🌟 수동/자동 실행 겹침 시 멈춰있는 이전 작업을 즉시 취소
 
 jobs:
   run-check:
@@ -54,6 +54,10 @@ jobs:
           if git status --porcelain | grep -E 'data\.json|snapshot\.json' >/dev/null 2>&1; then
             git add data.json snapshot.json
             git commit -m "Daily NFPC/NFTC update check"
+            
+            # 🌟 Push 전 원격 저장소의 최신 내역을 가져와 병합하여 충돌 에러 원천 차단
+            git pull --rebase
+            
             git push
           else
             echo "No data changes"
