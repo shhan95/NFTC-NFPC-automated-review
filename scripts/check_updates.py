@@ -18,14 +18,17 @@ if not LAWGO_OC:
 
 ALERT_WEBHOOK_URL = os.getenv("ALERT_WEBHOOK_URL", "").strip()
 
-# 검색 API와 상세조회 API 주소 분리
 LAW_SEARCH_URL = "https://www.law.go.kr/DRF/lawSearch.do"
 LAW_SERVICE_URL = "https://www.law.go.kr/DRF/lawService.do"
 
-TIMEOUT = int(os.getenv("LAWGO_TIMEOUT", "12"))
-MAX_RETRIES = int(os.getenv("LAWGO_MAX_RETRIES", "3"))
-REQUEST_GAP = float(os.getenv("LAWGO_REQUEST_GAP", "1.5"))
+# 💡 대기 시간을 조금 줄였습니다 (12->10초, 재시도 3->2번)
+TIMEOUT = int(os.getenv("LAWGO_TIMEOUT", "10"))
+MAX_RETRIES = int(os.getenv("LAWGO_MAX_RETRIES", "2"))
+REQUEST_GAP = float(os.getenv("LAWGO_REQUEST_GAP", "2.0"))
 
+# 💡 연속 에러 추적용 변수 (5번 연속 실패 시 즉시 종료)
+CONSECUTIVE_ERRORS = 0
+MAX_CONSECUTIVE_ERRORS = 5
 
 def load_json(path: str, default: Any) -> Any:
     try:
@@ -34,15 +37,12 @@ def load_json(path: str, default: Any) -> Any:
     except FileNotFoundError:
         return default
 
-
 def save_json(path: str, data: Any) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-
 def sha256_text(text: str) -> str:
     return hashlib.sha256((text or "").encode("utf-8")).hexdigest()
-
 
 def normalize_date(value: Any) -> str:
     if value is None:
@@ -52,17 +52,18 @@ def normalize_date(value: Any) -> str:
         return f"{s[0:4]}.{s[4:6]}.{s[6:8]}"
     return s
 
-
 def normalize_text(value: Any) -> str:
     return str(value or "").strip().lower().replace(" ", "")
-
 
 def backoff(attempt: int) -> None:
     base = 0.5 * (2 ** (attempt - 1))
     time.sleep(base + random.random() * 0.35)
 
-
 def http_get_json(url: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    global CONSECUTIVE_ERRORS
+    if CONSECUTIVE_ERRORS >= MAX_CONSECUTIVE_ERRORS:
+        return None # 서버 이상 시 빠른 포기
+
     query = urllib.parse.urlencode(params, doseq=False, safe="")
     req_url = f"{url}?{query}"
 
@@ -78,13 +79,14 @@ def http_get_json(url: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 raw = resp.read().decode("utf-8", errors="replace")
                 if not raw:
                     raise ValueError("empty response")
+                CONSECUTIVE_ERRORS = 0 # 성공하면 에러 카운트 초기화
                 return json.loads(raw)
         except Exception:
             if attempt >= MAX_RETRIES:
+                CONSECUTIVE_ERRORS += 1
                 return None
             backoff(attempt)
     return None
-
 
 def to_dict_list(value: Any) -> List[Dict[str, Any]]:
     if isinstance(value, list):
@@ -92,7 +94,6 @@ def to_dict_list(value: Any) -> List[Dict[str, Any]]:
     if isinstance(value, dict):
         return [value]
     return []
-
 
 def extract_items(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     candidates: List[Dict[str, Any]] = []
@@ -112,7 +113,6 @@ def extract_items(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
         seen.add(sig)
         uniq.append(item)
     return uniq
-
 
 def pick_best_item(items: List[Dict[str, Any]], std: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if not items:
@@ -138,7 +138,6 @@ def pick_best_item(items: List[Dict[str, Any]], std: Dict[str, Any]) -> Optional
 
     return sorted(items, key=score, reverse=True)[0]
 
-
 def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: str = "") -> Dict[str, Any]:
     now = NOW().isoformat(timespec="seconds")
     if error or not item:
@@ -159,8 +158,6 @@ def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: s
 
     source_hash = sha256_text(json.dumps(item, ensure_ascii=False, sort_keys=True))
     html_url = item.get("법령상세링크") or item.get("상세링크") or ""
-    
-    # 일련번호(seq) 추출 추가
     seq = str(item.get("행정규칙일련번호") or item.get("법령일련번호") or "")
 
     return {
@@ -177,7 +174,6 @@ def build_snapshot(std: Dict[str, Any], item: Optional[Dict[str, Any]], error: s
         "htmlUrl": str(html_url),
         "sourceHash": source_hash,
     }
-
 
 def fetch_standard(std: Dict[str, Any]) -> Dict[str, Any]:
     query = (std.get("query") or std.get("title") or "").strip()
@@ -198,7 +194,6 @@ def fetch_standard(std: Dict[str, Any]) -> Dict[str, Any]:
     items = extract_items(payload)
     best = pick_best_item(items, std)
     return build_snapshot(std, best)
-
 
 def fetch_revision_reason(seq: str) -> str:
     if not seq:
@@ -226,15 +221,17 @@ def fetch_revision_reason(seq: str) -> str:
         
     return "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요."
 
-
 def diff_changed(prev: Optional[Dict[str, Any]], cur: Dict[str, Any]) -> Tuple[bool, List[str]]:
-    keys = ["status", "noticeNo", "announceDate", "effectiveDate", "revisionType", "htmlUrl", "sourceHash", "error"]
+    # 💡 서버 에러로 조회를 못한 경우는 '변경'으로 취급하지 않도록 방어
+    if cur["status"] == "ERROR":
+        return False, []
+
+    keys = ["status", "noticeNo", "announceDate", "effectiveDate", "revisionType", "htmlUrl", "sourceHash"]
     if not prev:
         return True, ["new"]
 
     changed_fields = [k for k in keys if (prev.get(k) or "") != (cur.get(k) or "")]
     return (len(changed_fields) > 0), changed_fields
-
 
 def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Dict[str, Any]], Dict[str, int]]:
     standards = load_json(standards_file, {"items": []}).get("items", [])
@@ -242,21 +239,35 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
     changes: List[Dict[str, Any]] = []
     stats = {"total": 0, "found": 0, "notFound": 0, "error": 0, "changed": 0}
 
+    print(f"\n[{scope}] 조회를 시작합니다 (총 {len(standards)}건)")
+    print("-" * 50)
+
     for std in standards:
+        if CONSECUTIVE_ERRORS >= MAX_CONSECUTIVE_ERRORS:
+            print("🚨 서버 응답 불량으로 조회를 중단합니다.")
+            break
+
         code = std.get("code")
         if not code:
             continue
 
         stats["total"] += 1
+        
+        # 💡 깃허브 액션 콘솔에 진행 상황 실시간 출력
+        print(f"🔄 조회 중: {code} ({std.get('title', '')[:15]}...)", end=" ", flush=True)
+
         cur = fetch_standard(std)
         prev = prev_scope.get(code)
 
         if cur["status"] == "FOUND":
             stats["found"] += 1
+            print("✅ 성공")
         elif cur["status"] == "NOT_FOUND":
             stats["notFound"] += 1
+            print("⚠️ 검색 안됨")
         else:
             stats["error"] += 1
+            print("❌ API 에러/타임아웃")
 
         changed, changed_fields = diff_changed(prev, cur)
         if changed:
@@ -282,15 +293,15 @@ def process_scope(scope: str, standards_file: str, prev_scope: Dict[str, Any]) -
                 }
             )
 
-        latest[code] = cur
+        # 기존 데이터를 유지하여 에러 시 덮어쓰기 방지
+        latest[code] = cur if cur["status"] != "ERROR" else prev_scope.get(code, cur)
         time.sleep(REQUEST_GAP)
 
     return latest, changes, stats
 
-
 def post_webhook(record: Dict[str, Any]) -> None:
     if not ALERT_WEBHOOK_URL:
-        print("⚠️ 알림 실패: 깃허브 Secret에 'ALERT_WEBHOOK_URL'이 없습니다!")
+        print("\n⚠️ 알림 실패: 깃허브 Secret에 'ALERT_WEBHOOK_URL'이 없습니다!")
         return
         
     target_url = ALERT_WEBHOOK_URL
@@ -344,10 +355,9 @@ def post_webhook(record: Dict[str, Any]) -> None:
     )
     try:
         urllib.request.urlopen(req, timeout=8).read()
-        print("🔔 디스코드 알림 전송 성공!")
+        print("\n🔔 디스코드 알림 전송 성공!")
     except Exception as e:
-        print(f"❌ 디스코드 알림 전송 실패: {e}")
-
+        print(f"\n❌ 디스코드 알림 전송 실패: {e}")
 
 def main() -> None:
     data = load_json("data.json", {"lastRun": None, "records": []})
@@ -357,7 +367,11 @@ def main() -> None:
     nftc_latest, nftc_changes, nftc_stats = process_scope("NFTC", "standards_nftc.json", snapshot.get("nftc", {}))
 
     all_changes = nfpc_changes + nftc_changes
-    result = "변경 있음" if all_changes else "변경 없음"
+    
+    # 서버 다운으로 조회를 못한 에러 건수가 있다면 경고 문구 추가
+    total_errors = nfpc_stats["error"] + nftc_stats["error"]
+    result_prefix = "⚠️ 서버응답불량 " if total_errors > 0 else ""
+    result = f"{result_prefix}변경 있음" if all_changes else f"{result_prefix}변경 없음"
 
     summary = (
         f"NFPC {nfpc_stats['changed']}건 변경 | "
@@ -389,7 +403,7 @@ def main() -> None:
     save_json("data.json", data)
     save_json("snapshot.json", snapshot)
 
-    short = f"[{TODAY}] {result} - {summary}"
+    short = f"\n[{TODAY}] {result} - {summary}"
     print(short)
     
     if all_changes:
