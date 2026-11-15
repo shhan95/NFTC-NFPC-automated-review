@@ -1,6 +1,325 @@
 {
-  "lastRun": "2026-11-14T16:54:39+09:00",
+  "lastRun": "2026-11-15T16:57:38+09:00",
   "records": [
+    {
+      "date": "2026-11-15",
+      "checkedAt": "2026-11-15T16:57:38+09:00",
+      "scope": "NFPC/NFTC",
+      "result": "변경 있음",
+      "summary": "NFPC 0건 변경 | NFTC 21건 변경",
+      "stats": {
+        "nfpc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 0
+        },
+        "nftc": {
+          "total": 41,
+          "found": 41,
+          "notFound": 0,
+          "error": 0,
+          "changed": 21
+        }
+      },
+      "changes": [
+        {
+          "scope": "NFTC",
+          "code": "NFTC_207",
+          "title": "화재알림설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2023.12.12",
+          "effectiveDate": "2023.12.12",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_301",
+          "title": "피난기구의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.02.27",
+          "effectiveDate": "2026.03.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_302",
+          "title": "인명구조기구의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.02.27",
+          "effectiveDate": "2026.03.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_303",
+          "title": "유도등 및 유도표지의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.01",
+          "effectiveDate": "2024.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_304",
+          "title": "비상조명등의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_401",
+          "title": "상수도소화용수설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.10.07",
+          "effectiveDate": "2026.10.07",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_402",
+          "title": "소화수조 및 저수조의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_501",
+          "title": "제연설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.10.01",
+          "effectiveDate": "2024.10.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_501A",
+          "title": "특별피난계단의 계단실 및 부속실 제연설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.07.01",
+          "effectiveDate": "2026.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_502",
+          "title": "연결송수관설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.07.01",
+          "effectiveDate": "2026.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_503",
+          "title": "연결살수설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.01",
+          "effectiveDate": "2024.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_504",
+          "title": "비상콘센트설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2023.12.29",
+          "effectiveDate": "2024.01.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_505",
+          "title": "무선통신보조설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_602",
+          "title": "소방시설용 비상전원수전설비의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2022.12.01",
+          "effectiveDate": "2022.12.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_603",
+          "title": "도로터널의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.07.01",
+          "effectiveDate": "2026.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_604",
+          "title": "고층건축물의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2023.12.20",
+          "effectiveDate": "2023.12.20",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_605",
+          "title": "지하구의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.07.01",
+          "effectiveDate": "2026.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_606",
+          "title": "건설현장의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "전부개정",
+          "announceDate": "2023.06.30",
+          "effectiveDate": "2023.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_607",
+          "title": "전기저장시설의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2024.07.01",
+          "effectiveDate": "2024.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_608",
+          "title": "공동주택의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "일부개정",
+          "announceDate": "2026.07.01",
+          "effectiveDate": "2026.07.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        },
+        {
+          "scope": "NFTC",
+          "code": "NFTC_609",
+          "title": "창고시설의 화재안전기술기준",
+          "status": "FOUND",
+          "revisionType": "제정",
+          "announceDate": "2023.12.29",
+          "effectiveDate": "2024.01.01",
+          "changedFields": [
+            "new"
+          ],
+          "reason": "별도의 개정이유가 제공되지 않았습니다. 상세 링크를 확인해주세요.",
+          "url": ""
+        }
+      ]
+    },
     {
       "date": "2026-11-14",
       "checkedAt": "2026-11-14T16:54:39+09:00",
